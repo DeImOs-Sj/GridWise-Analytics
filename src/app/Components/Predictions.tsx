@@ -76,14 +76,16 @@ const Predictions = () => {
       <div>
         <div className="  p-8 w-full">
           {/* Top Section: 3 Cards with AreaChart */}
-          <div className="flex flex-row  items-center space-x-8 mb-8">
-            {/* Card 1 with AreaChart */}
-            <div className="bg-white/10 w-[20rem] h-[14rem] rounded-lg shadow-lg">
-              <h2 className="font-bold text-center p-2">
-                Demand And Supply Growth Rate
+          {/* <div className="flex flex-row  items-center space-x-8 mb-8">
+           */}
+          {/* Card 1 with AreaChart */}
+          <div className="grid grid-cols-4 gap-4">
+            <div className="bg-white/10  rounded-lg shadow-lg">
+              <h2 className="font-bold text-center uppercase  p-2">
+                Predicted Energy Surplus (kWh){" "}
               </h2>
 
-              <ResponsiveContainer width="110%" height="82%">
+              <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
                   data={transactiondata}
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -108,11 +110,11 @@ const Predictions = () => {
             </div>
 
             {/* Card 2 with AreaChart */}
-            <div className="bg-white/10  w-[20rem] h-[14rem] rounded-lg shadow-lg">
-              <h2 className="font-bold text-center p-2">
-                Predicted YOY Revenue Generated
+            <div className="bg-white/10  rounded-lg shadow-lg">
+              <h2 className="font-bold text-center uppercase  p-2">
+                Supply vs. Demand Prediction{" "}
               </h2>
-              <ResponsiveContainer width="110%" height="82%">
+              <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
                   data={revenueData} // Replace with your second data set
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -121,19 +123,19 @@ const Predictions = () => {
                   <Area
                     type="monotone"
                     dataKey="revenueGenerated" // Corrected to match energy data structure
-                    stroke="#ffc658"
-                    fill="rgba(255, 198, 88, 0.3)"
+                    stroke="#8884d8"
+                    fill="rgba(136, 132, 216, 0.3)"
                   />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
 
             {/* Card 3 with AreaChart */}
-            <div className="bg-white/10  w-[20rem] h-[14rem] rounded-lg shadow-lg">
-              <h2 className="font-bold text-center p-2">
-                Predicted YOY Energy Traded
+            <div className="bg-white/10   rounded-lg shadow-lg">
+              <h2 className="font-bold text-center uppercase  p-2">
+                Peak Demand Prediction
               </h2>
-              <ResponsiveContainer width="110%" height="82%">
+              <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
                   data={energyData} // Replace with your third data set
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -142,8 +144,8 @@ const Predictions = () => {
                   <Area
                     type="monotone"
                     dataKey="energyTraded"
-                    stroke="#ffc658"
-                    fill="rgba(255, 198, 88, 0.3)"
+                    stroke="#8884d8"
+                    fill="rgba(136, 132, 216, 0.3)"
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -151,16 +153,16 @@ const Predictions = () => {
             <div>
               <div className="bg-white/10 p-6 rounded-lg shadow-md text-white w-[18rem] ">
                 <h3 className="text-lg font-bold mb-4">
-                  Relationships by content type
+                  Financial Forecasting Metrics
                 </h3>
                 <div className="flex flex-col space-y-4">
                   {/* First Item */}
                   <div className="flex justify-between">
                     <div>
-                      <p className="font-semibold">Personal Access</p>
+                      <p className="font-semibold">Revenue Prediction</p>
                       <p className="text-sm text-gray-400">50% Rate</p>
                     </div>
-                    <p className="text-sm text-gray-400">Nov 2023</p>
+                    <p className="text-sm text-gray-400">2025</p>
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-2">
                     <div
@@ -172,10 +174,10 @@ const Predictions = () => {
                   {/* Second Item */}
                   <div className="flex justify-between">
                     <div>
-                      <p className="font-semibold">On-site Services</p>
+                      <p className="font-semibold">Cost Prediction</p>
                       <p className="text-sm text-gray-400">80% Rate</p>
                     </div>
-                    <p className="text-sm text-gray-400">Nov 2023</p>
+                    <p className="text-sm text-gray-400">2025</p>
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-2">
                     <div
@@ -187,10 +189,10 @@ const Predictions = () => {
                   {/* Third Item */}
                   <div className="flex justify-between">
                     <div>
-                      <p className="font-semibold">Network Connected</p>
+                      <p className="font-semibold">Profitability Prediction</p>
                       <p className="text-sm text-gray-400">32% Rate</p>
                     </div>
-                    <p className="text-sm text-gray-400">Nov 2023</p>
+                    <p className="text-sm text-gray-400">2025</p>
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-2">
                     <div
@@ -206,8 +208,8 @@ const Predictions = () => {
 
         {/* </div> */}
         {/* New Row Content */}
-        <div className="flex h-full">
-          <div className="bg-white/10 p-4 rounded-lg shadow-md w-[70%] h-[20rem] ml-8">
+        <div className="grid grid-cols-3">
+          <div className="bg-white/10 p-4 rounded-lg shadow-md h-[20rem] ml-8 col-span-2">
             <div className="flex justify-between items-center mb-4 h-1">
               <h2 className="text-white text-lg font-bold">
                 Average risk over time
@@ -228,7 +230,7 @@ const Predictions = () => {
                 <Line
                   type="monotone"
                   dataKey="averageRisk"
-                  stroke="#F8C927"
+                  stroke="#818cf8"
                   activeDot={{ r: 8 }}
                   name="Energy Traded (kWh)"
                 />
@@ -245,7 +247,7 @@ const Predictions = () => {
                   cx="50%"
                   cy="50%"
                   outerRadius={80}
-                  fill="#8884d8"
+                  stroke="#818cf8"
                   label
                 />
                 <Tooltip />
@@ -274,6 +276,52 @@ const Predictions = () => {
               </h2>
             </div>
             {/* fdfnkdsjfnkdsfjndskjnksndfkdsjn */}
+          </div>
+          <div className="bg-white/10 p-4 rounded-lg shadow-md h-[20rem] ml-8 col-span-1">
+            <h2 className="font-bold  uppercase text-xl">
+              Expenditure and Revenue Forecast
+            </h2>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={energyData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+              >
+                <XAxis dataKey="time" tick={{ fill: "white" }} />
+                <YAxis tick={{ fill: "white" }} />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="energyTraded"
+                  stroke="#818cf8"
+                  activeDot={{ r: 8 }}
+                  name="Energy Traded (kWh)"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>{" "}
+          <div className="bg-white/10 p-4 rounded-lg shadow-md h-[20rem] ml-8 col-span-2">
+            <h2 className="font-bold  uppercase text-xl">
+              Expenditure and Revenue Forecast
+            </h2>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={energyData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+              >
+                <XAxis dataKey="time" tick={{ fill: "white" }} />
+                <YAxis tick={{ fill: "white" }} />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="energyTraded"
+                  stroke="#818cf8"
+                  activeDot={{ r: 8 }}
+                  name="Energy Traded (kWh)"
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>

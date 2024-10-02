@@ -10,11 +10,9 @@ import {
   Area,
   XAxis,
   YAxis,
-  RadialBarChart,
-  PolarAngleAxis,
-  RadialBar,
 } from "recharts";
 import { transactionResponse, energyResponse } from "../lib/chart-data";
+import { MdOutlineEnergySavingsLeaf } from "react-icons/md";
 import { TransactionResponse, EnergyResponse } from "../types/types";
 
 const PeakDemandSupplyGraph = () => {
@@ -50,12 +48,161 @@ const PeakDemandSupplyGraph = () => {
   }, []);
 
   return (
-    <div className=" p-4 flex flex-row items-start space-x-8 w-[80%]">
-      <div className="flex flex-col space-y-8 w-[60%]">
+    <div className="w-[80%]">
+      <div id="24h" className="">
+        <h1 className="font-bold py-4 uppercase">Analytics</h1>
+        <div
+          id="stats"
+          className="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <div className="bg-white/10 to-white/5 p-6 rounded-lg">
+            <div className="flex flex-row space-x-4 items-center">
+              <div id="stats-1">
+                <MdOutlineEnergySavingsLeaf size={40} />
+              </div>
+              <div>
+                <p className="text-indigo-300 text-sm font-medium uppercase leading-4">
+                  P2P Energy Trading
+                </p>
+                <p className="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                  <span>1,200 kWh</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
+                      />
+                    </svg>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white/10 p-6 rounded-lg">
+            <div className="flex flex-row space-x-4 items-center">
+              <div id="stats-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-10 h-10 text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="text-teal-300 text-sm font-medium uppercase leading-4">
+                  Total Revenue Generated
+                </p>
+                <p className="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                  <span>$2,873.88</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
+                      />
+                    </svg>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white/10 p-6 rounded-lg">
+            <div className="flex flex-row space-x-4 items-center">
+              <div id="stats-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-10 h-10 text-white"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="text-blue-300 text-sm font-medium uppercase leading-4">
+                  Total Energy Sold
+                </p>
+                <p className="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                  <span>+ 500 kWh</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
+                      />
+                    </svg>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols gap-[3.5rem] p-6">
         {/* Energy Traded (P2P) Chart */}
+        <div className="bg-white/10 p-4 w-full h-96 rounded-lg shadow-lg col-span-2">
+          <h2 className="font-bold  uppercase text-xl">Energy Surplus</h2>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={energyData}
+              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+            >
+              <XAxis dataKey="time" tick={{ fill: "white" }} />
+              <YAxis tick={{ fill: "white" }} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="energyTraded"
+                stroke="#818cf8"
+                activeDot={{ r: 8 }}
+                name="Energy Traded (kWh)"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
         <div className="bg-white/10 p-4 w-full h-96 rounded-lg shadow-lg">
-          <h2 className="font-bold text-xl text-white p-2">
-            Energy Traded (P2P)
+          <h2 className="font-bold  uppercase text-xl">
+            Supply vs. Demand Trend
           </h2>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
@@ -69,80 +216,82 @@ const PeakDemandSupplyGraph = () => {
               <Line
                 type="monotone"
                 dataKey="energyTraded"
-                stroke="#F8C927"
+                stroke="#818cf8"
                 activeDot={{ r: 8 }}
                 name="Energy Traded (kWh)"
               />
             </LineChart>
           </ResponsiveContainer>
         </div>
-
-        {/* Peak Demand vs Peak Supply Chart */}
         <div className="bg-white/10 p-4 w-full h-96 rounded-lg shadow-lg">
-          <h2 className="font-bold text-xl text-white p-2">
-            Peak Demand vs Peak Supply
+          <h2 className="font-bold  uppercase text-xl">
+            P2P Energy Transactions{" "}
           </h2>
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart
-              data={transactiondata}
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+            <LineChart
+              data={energyData}
+              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
             >
               <XAxis dataKey="time" tick={{ fill: "white" }} />
               <YAxis tick={{ fill: "white" }} />
               <Tooltip />
               <Legend />
-              <Area
+              <Line
                 type="monotone"
-                dataKey="demand"
-                stroke="#8884d8"
-                fill="rgba(136, 132, 216, 0.3)"
-                name="Peak Demand"
+                dataKey="energyTraded"
+                stroke="#818cf8"
+                activeDot={{ r: 8 }}
+                name="Energy Traded (kWh)"
               />
-              <Area
-                type="monotone"
-                dataKey="supply"
-                stroke="#82ca9d"
-                fill="rgba(130, 202, 157, 0.3)"
-                name="Peak Supply"
-              />
-            </AreaChart>
+            </LineChart>
           </ResponsiveContainer>
         </div>
-      </div>
-
-      {/* Radial Bar Chart for Transactions */}
-      <div className="bg-white/10 p-4 w-[30%] h-[90%] rounded-lg shadow-lg">
-        <h2 className="font-bold text-xl text-white p-2">
-          Number of Transactions for Peak Consumption
-        </h2>
-        <ResponsiveContainer width="100%" height="100%">
-          <RadialBarChart
-            cx="50%"
-            cy="50%"
-            innerRadius="20%"
-            outerRadius="80%"
-            barSize={10}
-            data={radialData}
-            startAngle={180}
-            endAngle={0}
-          >
-            <PolarAngleAxis
-              type="number"
-              domain={[0, Math.max(...radialData.map((d) => d.transactions))]}
-              angleAxisId={0}
-              tick={{ fill: "white" }}
-            />
-            <RadialBar
-              background
-              dataKey="transactions"
-              fill="#82ca9d"
-              name="Transactions"
-              cornerRadius={5}
-            />
-            <Tooltip />
-            <Legend />
-          </RadialBarChart>
-        </ResponsiveContainer>
+        <div className="bg-white/10 p-4 w-full h-96 rounded-lg shadow-lg">
+          <h2 className="font-bold  uppercase text-xl">
+            Supply-Demand Mismatch
+          </h2>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={energyData}
+              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+            >
+              <XAxis dataKey="time" tick={{ fill: "white" }} />
+              <YAxis tick={{ fill: "white" }} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="energyTraded"
+                stroke="#818cf8"
+                activeDot={{ r: 8 }}
+                name="Energy Traded (kWh)"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>{" "}
+        <div className="bg-white/10 p-4 w-full h-96 rounded-lg shadow-lg">
+          <h2 className="font-bold  uppercase text-xl">
+            Expenditure and Revenue Forecast
+          </h2>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={energyData}
+              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+            >
+              <XAxis dataKey="time" tick={{ fill: "white" }} />
+              <YAxis tick={{ fill: "white" }} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="energyTraded"
+                stroke="#818cf8"
+                activeDot={{ r: 8 }}
+                name="Energy Traded (kWh)"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );
