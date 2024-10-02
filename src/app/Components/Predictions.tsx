@@ -116,15 +116,23 @@ const Predictions = () => {
               </h2>
               <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
-                  data={revenueData} // Replace with your second data set
+                  data={transactiondata}
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
                 >
                   <Tooltip />
                   <Area
                     type="monotone"
-                    dataKey="revenueGenerated" // Corrected to match energy data structure
+                    dataKey="demand"
                     stroke="#8884d8"
                     fill="rgba(136, 132, 216, 0.3)"
+                    name="Peak Demand"
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="supply"
+                    stroke="#82ca9d"
+                    fill="rgba(130, 202, 157, 0.3)"
+                    name="Peak Supply"
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -282,28 +290,39 @@ const Predictions = () => {
               Expenditure and Revenue Forecast
             </h2>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={energyData}
-                margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+              <AreaChart
+                width={500}
+                height={400}
+                data={transactiondata}
+                margin={{
+                  top: 10,
+                  right: 30,
+                  left: 0,
+                  bottom: 0,
+                }}
               >
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <XAxis dataKey="time" tick={{ fill: "white" }} />
                 <YAxis tick={{ fill: "white" }} />
                 <Tooltip />
-                <Legend />
-                <Line
+                <Area
                   type="monotone"
-                  dataKey="energyTraded"
-                  stroke="#818cf8"
-                  activeDot={{ r: 8 }}
-                  name="Energy Traded (kWh)"
+                  dataKey="demand"
+                  stroke="#8884d8"
+                  fill="#8884d8"
+                  fillOpacity={0.3}
                 />
-              </LineChart>
+                <Area
+                  dataKey="supply"
+                  stroke="#82ca9d"
+                  fill="#82ca9d"
+                  fillOpacity={0.3}
+                />
+              </AreaChart>
             </ResponsiveContainer>
           </div>{" "}
           <div className="bg-white/10 p-4 rounded-lg shadow-md h-[20rem] ml-8 col-span-2">
-            <h2 className="font-bold  uppercase text-xl">
-              Expenditure and Revenue Forecast
-            </h2>
+            <h2 className="font-bold  uppercase text-xl">TURNOVER</h2>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={energyData}

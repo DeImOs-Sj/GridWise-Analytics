@@ -11,40 +11,53 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { transactionResponse, energyResponse } from "../lib/chart-data";
+import {
+  energySurplusResponse,
+  supplyDemandTrendResponse,
+  p2pTransactionsResponse,
+  supplyDemandMismatchResponse,
+  expenditureRevenueForecastResponse,
+} from "../lib/chart-data";
 import { MdOutlineEnergySavingsLeaf } from "react-icons/md";
-import { TransactionResponse, EnergyResponse } from "../types/types";
+import {
+  EnergySurplusResponse,
+  SupplyDemandTrendResponse,
+  P2pTransactionsResponse,
+  SupplyDemandMismatchResponse,
+  ExpenditureRevenueForecastResponse,
+} from "../types/types";
 
 const PeakDemandSupplyGraph = () => {
-  const [transactiondata, setTransactionData] = useState<TransactionResponse[]>(
-    []
-  );
-  const [energyData, setEnergyData] = useState<EnergyResponse[]>([]);
-  const [radialData, setRadialData] = useState([]);
+  const [energySurplusResponseData, setEnergySurplusResponseData] = useState<
+    EnergySurplusResponse[]
+  >([]);
+  const [supplyDemandTrendResponseData, setSupplyDemandTrendResponseData] =
+    useState<SupplyDemandTrendResponse[]>([]);
+  const [p2pTransactionsResponseData, setP2pTransactionsResponseData] =
+    useState<P2pTransactionsResponse[]>([]);
+  const [
+    supplyDemandMismatchResponseData,
+    setSupplyDemandMismatchResponseData,
+  ] = useState<SupplyDemandMismatchResponse[]>([]);
+  const [
+    expenditureRevenueForecastResponseData,
+    setExpenditureRevenueForecastResponseData,
+  ] = useState<ExpenditureRevenueForecastResponse[]>([]);
 
   useEffect(() => {
-    // Fetch mock transaction data (Peak demand and supply)
-    const fetchTransactionData = async () => {
-      setTransactionData(transactionResponse);
+    // Fetch data and set the state
+    const fetchData = async () => {
+      // Simulating an API call
+      setEnergySurplusResponseData(energySurplusResponse);
+      setSupplyDemandTrendResponseData(supplyDemandTrendResponse);
+      setP2pTransactionsResponseData(p2pTransactionsResponse);
+      setSupplyDemandMismatchResponseData(supplyDemandMismatchResponse);
+      setExpenditureRevenueForecastResponseData(
+        expenditureRevenueForecastResponse
+      );
     };
 
-    // Fetch mock energy traded data (P2P energy traded)
-    const fetchEnergyData = async () => {
-      setEnergyData(energyResponse);
-    };
-
-    const fetchRadialData = async () => {
-      const radialResponse = [
-        { name: "2024-09-01", transactions: 3 },
-        { name: "2024-09-02", transactions: 5 },
-        { name: "2024-09-03", transactions: 4 },
-      ];
-      setRadialData(radialResponse);
-    };
-
-    fetchTransactionData();
-    fetchRadialData();
-    fetchEnergyData();
+    fetchData();
   }, []);
 
   return (
@@ -183,7 +196,7 @@ const PeakDemandSupplyGraph = () => {
           <h2 className="font-bold  uppercase text-xl">Energy Surplus</h2>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              data={energyData}
+              data={energySurplusResponseData}
               margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
             >
               <XAxis dataKey="time" tick={{ fill: "white" }} />
@@ -192,10 +205,10 @@ const PeakDemandSupplyGraph = () => {
               <Legend />
               <Line
                 type="monotone"
-                dataKey="energyTraded"
+                dataKey="surplus"
                 stroke="#818cf8"
                 activeDot={{ r: 8 }}
-                name="Energy Traded (kWh)"
+                name="Energy Surplus (kWh)"
               />
             </LineChart>
           </ResponsiveContainer>
@@ -205,22 +218,35 @@ const PeakDemandSupplyGraph = () => {
             Supply vs. Demand Trend
           </h2>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={energyData}
-              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+            <AreaChart
+              width={500}
+              height={400}
+              data={supplyDemandTrendResponseData}
+              margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+              }}
             >
+              {/* <CartesianGrid strokeDasharray="3 3" /> */}
               <XAxis dataKey="time" tick={{ fill: "white" }} />
               <YAxis tick={{ fill: "white" }} />
               <Tooltip />
-              <Legend />
-              <Line
+              <Area
                 type="monotone"
-                dataKey="energyTraded"
+                dataKey="demand"
                 stroke="#818cf8"
-                activeDot={{ r: 8 }}
-                name="Energy Traded (kWh)"
+                fill="#818cf8"
+                fillOpacity={0.3}
               />
-            </LineChart>
+              <Area
+                dataKey="supply"
+                stroke="#82ca9d"
+                fill="#82ca9d"
+                fillOpacity={0.3}
+              />
+            </AreaChart>
           </ResponsiveContainer>
         </div>
         <div className="bg-white/10 p-4 w-full h-96 rounded-lg shadow-lg">
@@ -229,7 +255,7 @@ const PeakDemandSupplyGraph = () => {
           </h2>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              data={energyData}
+              data={p2pTransactionsResponseData}
               margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
             >
               <XAxis dataKey="time" tick={{ fill: "white" }} />
@@ -252,7 +278,7 @@ const PeakDemandSupplyGraph = () => {
           </h2>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              data={energyData}
+              data={supplyDemandMismatchResponseData}
               margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
             >
               <XAxis dataKey="time" tick={{ fill: "white" }} />
@@ -261,10 +287,10 @@ const PeakDemandSupplyGraph = () => {
               <Legend />
               <Line
                 type="monotone"
-                dataKey="energyTraded"
+                dataKey="mismatch"
                 stroke="#818cf8"
                 activeDot={{ r: 8 }}
-                name="Energy Traded (kWh)"
+                name="Mismatch Supply (kWh)"
               />
             </LineChart>
           </ResponsiveContainer>
@@ -274,22 +300,35 @@ const PeakDemandSupplyGraph = () => {
             Expenditure and Revenue Forecast
           </h2>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={energyData}
-              margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+            <AreaChart
+              width={500}
+              height={400}
+              data={expenditureRevenueForecastResponseData}
+              margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+              }}
             >
+              {/* <CartesianGrid strokeDasharray="3 3" /> */}
               <XAxis dataKey="time" tick={{ fill: "white" }} />
               <YAxis tick={{ fill: "white" }} />
               <Tooltip />
-              <Legend />
-              <Line
+              <Area
                 type="monotone"
-                dataKey="energyTraded"
+                dataKey="expenditure"
                 stroke="#818cf8"
-                activeDot={{ r: 8 }}
-                name="Energy Traded (kWh)"
+                fill="#818cf8"
+                fillOpacity={0.3}
               />
-            </LineChart>
+              <Area
+                dataKey="revenue"
+                stroke="#82ca9d"
+                fill="#82ca9d"
+                fillOpacity={0.3}
+              />
+            </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>

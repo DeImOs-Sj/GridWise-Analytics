@@ -1,20 +1,22 @@
-export interface TransactionResponse {
+export interface EnergySurplusResponse {
   time: string;
-  demand: number;
-  supply: number;
+  surplus: number;
 }
-
-export interface EnergyResponse {
+export interface SupplyDemandTrendResponse {
+  time: string;
+  supply: number;
+  demand: number;
+}
+export interface P2pTransactionsResponse {
   time: string;
   energyTraded: number;
 }
-
-export interface RevenueResponse {
+export interface SupplyDemandMismatchResponse {
   time: string;
-  revenueGenerated: number;
+  mismatch: number;
 }
-
-export interface RiskResponse {
+export interface ExpenditureRevenueForecastResponse {
   time: string;
-  averageRisk: number;
+  expenditure: number;
+  revenue: number;
 }
