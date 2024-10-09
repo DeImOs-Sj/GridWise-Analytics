@@ -7,7 +7,7 @@ import {
 } from "@solana/web3.js";
 import { Program, AnchorProvider, web3 } from "@project-serum/anchor";
 import BN from "bn.js"; // Import BN class
-import IDL from "./abi.json";
+import idl from "./abi.json";
 
 // Replace with your program ID
 const PROGRAM_ID = new PublicKey(
@@ -34,88 +34,20 @@ const getProvider = () => {
   });
 };
 
-// // Function to get the program
-// const getProgram = async () => {
-//   const provider = getProvider();
-//   console.log("provider", JSON.parse(JSON.stringify(IDL)));
-//   const result = new Program(
-//     JSON.parse(JSON.stringify(IDL)),
-//     "7rvBtZRY8RwhsrBfEmsbdXuF8jDK4QimGUyJRtXbaULM",
-//     provider
-//   );
-//   console.log("result", result);
-//   return result;
-// };
+const createConnection = async () => {
+  const connection = new Connection("https://api.devnet.solana.com"); // Adjust if needed
+  const provider = new AnchorProvider(
+    connection,
+    window.solana, // Make sure this is properly set up
+    AnchorProvider.defaultOptions()
+  );
 
-function validateIDL(idl) {
-  console.log("Full IDL:", JSON.stringify(idl, null, 2));
-
-  // Check for instructions
-  if (!idl.instructions || !Array.isArray(idl.instructions)) {
-    console.error("IDL is missing instructions array");
-    return false;
-  }
-
-  // Validate each instruction
-  idl.instructions.forEach((ix, index) => {
-    console.log(`Instruction ${index}:`, ix);
-    if (!ix.name || !ix.accounts || !Array.isArray(ix.accounts)) {
-      console.error(`Instruction ${index} is malformed`);
-    }
-  });
-
-  return true;
-}
-
-// const getProgram = async () => {
-//   try {
-//     const connection = new Connection("https://api.devnet.solana.com"); // Or your preferred RPC endpoint
-//     const provider = new AnchorProvider(
-//       connection,
-//       window.solana, // Assumes you're using Solana wallet adapter
-//       AnchorProvider.defaultOptions()
-//     );
-
-//     console.log("IDL:", IDL);
-
-//     const program = new Program(
-//       JSON.parse(JSON.stringify(IDL)),
-//       PROGRAM_ID,
-//       provider
-//     );
-
-//     console.log("Program instance created:", program);
-
-//     return program;
-//   } catch (error) {
-//     console.error("Error in getProgram:", error);
-//     throw error;
-//   }
-// };
-const getProgram = async () => {
-  try {
-    const connection = new Connection("https://api.devnet.solana.com"); // Adjust if needed
-    const provider = new AnchorProvider(
-      connection,
-      window.solana, // Make sure this is properly set up
-      AnchorProvider.defaultOptions()
-    );
-
-    if (!validateIDL(IDL)) {
-      throw new Error("IDL validation failed");
-    }
-
-    const program = new Program(
-      JSON.parse(JSON.stringify(IDL)),
-      PROGRAM_ID,
-      provider
-    );
-    console.log("Program instance created successfully");
-    return program;
-  } catch (error) {
-    console.error("Error in getProgram:", error);
-    throw error;
-  }
+  const program = new Program(
+    JSON.parse(JSON.stringify(idl)),
+    PROGRAM_ID,
+    provider
+  );
+  return program;
 };
 export const addTransaction = async (
   txId,
@@ -123,7 +55,7 @@ export const addTransaction = async (
   gridAddress,
   powerAmount
 ) => {
-  const program = await getProgram();
+  const program = await createConnection();
   const transaction = Keypair.generate();
   const provider = getProvider(); // Initialize provider here
 
@@ -158,7 +90,7 @@ export const registerChargingStation = async (
   powerRating
 ) => {
   console.log("registerChargingStationsdfdfs");
-  const program = await getProgram();
+  const program = await createConnection();
   console.log("program", program);
   const chargingStation = Keypair.generate();
   console.log(chargingStation);
@@ -196,10 +128,20 @@ export const registerGrid = async (
   longitude,
   totalPowerCapacity
 ) => {
-  const program = await getProgram();
+  console.log(
+    "registerChargingStation",
+    gridId,
+    gridName,
+    latitude,
+    longitude,
+    totalPowerCapacity
+  );
+  const program = await createConnection();
+  console.log("program", program.methods.registerGrid);
+  console.log("program", program.methods);
   const grid = Keypair.generate();
   const provider = getProvider(); // Initialize provider here
-
+  console.log("provider", provider);
   try {
     await program.methods
       .registerGrid(
@@ -233,9 +175,9 @@ export const registerPowerGenerationPoint = async (
   longitude,
   powerProduction
 ) => {
-  const program = await getProgram();
+  const program = await createConnection();
   const powerGenerationPoint = Keypair.generate();
-  const provider = getProvider(); // Initialize provider here
+  const provider = getProvider();
 
   try {
     await program.methods

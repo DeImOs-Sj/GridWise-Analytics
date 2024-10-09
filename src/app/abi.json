@@ -1,148 +1,122 @@
 {
   "version": "0.1.0",
-  "name": "blog_sol",
-  "constants": [
-      {
-          "name": "USER_SEED",
-          "type": {
-              "defined": "&[u8]"
-          },
-          "value": "b\"user\""
-      },
-      {
-          "name": "POST_SEED",
-          "type": {
-              "defined": "&[u8]"
-          },
-          "value": "b\"post\""
-      }
-  ],
+  "name": "solana_uei",
   "instructions": [
-      {
-          "name": "initUser",
-          "accounts": [
-              {
-                  "name": "userAccount",
-                  "isMut": true,
-                  "isSigner": false
-              },
-              {
-                  "name": "authority",
-                  "isMut": true,
-                  "isSigner": true
-              },
-              {
-                  "name": "systemProgram",
-                  "isMut": false,
-                  "isSigner": false
-              }
-          ],
-          "args": [
-              {
-                  "name": "name",
-                  "type": "string"
-              },
-              {
-                  "name": "avatar",
-                  "type": "string"
-              }
-          ]
-      },
-      {
-          "name": "createPost",
-          "accounts": [
-              {
-                  "name": "postAccount",
-                  "isMut": true,
-                  "isSigner": false
-              },
-              {
-                  "name": "userAccount",
-                  "isMut": true,
-                  "isSigner": false
-              },
-              {
-                  "name": "authority",
-                  "isMut": true,
-                  "isSigner": true
-              },
-              {
-                  "name": "systemProgram",
-                  "isMut": false,
-                  "isSigner": false
-              }
-          ],
-          "args": [
-              {
-                  "name": "title",
-                  "type": "string"
-              },
-              {
-                  "name": "content",
-                  "type": "string"
-              }
-          ]
-      }
+    {
+      "name": "registerGrid",
+      "accounts": [
+        { "name": "grid", "isMut": true, "isSigner": true },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "gridId", "type": "u64" },
+        { "name": "gridName", "type": "string" },
+        { "name": "location", "type": "string" },
+        { "name": "latitude", "type": "f64" },
+        { "name": "longitude", "type": "f64" },
+        { "name": "totalPowerCapacity", "type": "u64" }
+      ]
+    },
+    {
+      "name": "registerChargingStation",
+      "accounts": [
+        { "name": "chargingStation", "isMut": true, "isSigner": true },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "stationId", "type": "u64" },
+        { "name": "stationName", "type": "string" },
+        { "name": "latitude", "type": "f64" },
+        { "name": "longitude", "type": "f64" },
+        { "name": "powerRating", "type": "u64" }
+      ]
+    },
+    {
+      "name": "registerPowerGenerationPoint",
+      "accounts": [
+        { "name": "powerGenerationPoint", "isMut": true, "isSigner": true },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "plantId", "type": "u64" },
+        { "name": "plantName", "type": "string" },
+        { "name": "plantType", "type": "string" },
+        { "name": "latitude", "type": "f64" },
+        { "name": "longitude", "type": "f64" },
+        { "name": "powerProduction", "type": "u64" }
+      ]
+    },
+    {
+      "name": "addTransaction",
+      "accounts": [
+        { "name": "transaction", "isMut": true, "isSigner": true },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "txId", "type": "u64" },
+        { "name": "powerType", "type": "string" },
+        { "name": "gridAddress", "type": "publicKey" },
+        { "name": "powerAmount", "type": "u64" }
+      ]
+    }
   ],
   "accounts": [
-      {
-          "name": "UserAccount",
-          "type": {
-              "kind": "struct",
-              "fields": [
-                  {
-                      "name": "name",
-                      "type": "string"
-                  },
-                  {
-                      "name": "avatar",
-                      "type": "string"
-                  },
-                  {
-                      "name": "authority",
-                      "type": "publicKey"
-                  },
-                  {
-                      "name": "lastPostId",
-                      "type": "u8"
-                  },
-                  {
-                      "name": "postCount",
-                      "type": "u8"
-                  }
-              ]
-          }
-      },
-      {
-          "name": "PostAccount",
-          "type": {
-              "kind": "struct",
-              "fields": [
-                  {
-                      "name": "id",
-                      "type": "u8"
-                  },
-                  {
-                      "name": "title",
-                      "type": "string"
-                  },
-                  {
-                      "name": "content",
-                      "type": "string"
-                  },
-                  {
-                      "name": "user",
-                      "type": "publicKey"
-                  },
-                  {
-                      "name": "authority",
-                      "type": "publicKey"
-                  }
-              ]
-          }
+    {
+      "name": "Grid",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "gridId", "type": "u64" },
+          { "name": "gridName", "type": "string" },
+          { "name": "location", "type": "string" },
+          { "name": "latitude", "type": "f64" },
+          { "name": "longitude", "type": "f64" },
+          { "name": "totalPowerCapacity", "type": "u64" }
+        ]
       }
-  ],
-  "metadata": {
-      "address": "FVDLUX9ZnEp943trRR3taTCpEHbZouRRi1bkKqWHPb3j"
-  }
+    },
+    {
+      "name": "ChargingStation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "stationId", "type": "u64" },
+          { "name": "stationName", "type": "string" },
+          { "name": "latitude", "type": "f64" },
+          { "name": "longitude", "type": "f64" },
+          { "name": "powerRating", "type": "u64" }
+        ]
+      }
+    },
+    {
+      "name": "PowerGenerationPoint",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "plantId", "type": "u64" },
+          { "name": "plantName", "type": "string" },
+          { "name": "plantType", "type": "string" },
+          { "name": "latitude", "type": "f64" },
+          { "name": "longitude", "type": "f64" },
+          { "name": "powerProduction", "type": "u64" }
+        ]
+      }
+    },
+    {
+      "name": "Transaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "txId", "type": "u64" },
+          { "name": "powerType", "type": "string" },
+          { "name": "gridAddress", "type": "publicKey" },
+          { "name": "powerAmount", "type": "u64" }
+        ]
+      }
+    }
+  ]
 }

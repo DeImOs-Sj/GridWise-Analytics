@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect } from "react";
 import { SiSimpleanalytics } from "react-icons/si";
@@ -18,14 +18,12 @@ import {
   SystemProgram,
 } from "@solana/web3.js";
 import { AnchorProvider, Program } from "@project-serum/anchor";
-import { GridwiseProgram } from "../types/gridwise_program";
-
+import { registerGrid } from "../types/gridwise_program";
 
 const PROGRAM_ID = "D2CWA6U18ALzBiko2DUrae36F6zt8Gnt8DEzvLcEowsz";
 
 const SideBar = () => {
-
-  const [,setProgram] = useAtom(programAtom);
+  const [, setProgram] = useAtom(programAtom);
 
   const createConnection = async () => {
     const connection = new Connection("https://api.devnet.solana.com"); // Adjust if needed
@@ -34,22 +32,19 @@ const SideBar = () => {
       window.solana, // Make sure this is properly set up
       AnchorProvider.defaultOptions()
     );
-  
-  
+
     const program = new Program(
-      idl,
+      JSON.parse(JSON.stringify(idl)),
       PROGRAM_ID,
       provider
     );
 
     setProgram(program);
-  }
+  };
 
-  useEffect(()=> {
+  useEffect(() => {
     createConnection();
-  },[])
-
-  
+  }, []);
 
   return (
     <>
