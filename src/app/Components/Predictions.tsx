@@ -14,16 +14,20 @@ import {
   Area,
 } from "recharts";
 import {
-  transactionResponse,
-  energyResponse,
-  revenueResponse,
-  riskResponse,
+  predictedEnergySurplusResponse,
+  predictedSupplyDemandTrendResponse,
+  predictedPeakDemandResponse,
+  riskData,
+  expenditureRevenueForecastResponsePrediction,
+  turnoverResponse,
 } from "../lib/chart-data";
 import {
-  TransactionResponse,
-  EnergyResponse,
-  RevenueResponse,
-  RiskResponse,
+  PredictedEnergySurplusResponse,
+  PredictedSupplyDemandTrendResponse,
+  PredictedPeakDemandResponse,
+  RiskData,
+  ExpenditureRevenueForecastResponsePrediction,
+  TurnoverResponse,
 } from "../types/types";
 
 const Predictions = () => {
@@ -45,40 +49,59 @@ const Predictions = () => {
     { name: "Group F", value: 4800 },
   ];
 
-  const [transactiondata, setTransactionData] = useState<TransactionResponse[]>(
-    []
-  );
-  const [energyData, setEnergyData] = useState<EnergyResponse[]>([]);
-  const [revenueData, setRevenueData] = useState<RevenueResponse[]>([]);
-  const [riskData, setRiskData] = useState<RiskResponse[]>([]);
+  const [energySurplusData, setEnergySurplusData] = useState<
+    PredictedEnergySurplusResponse[]
+  >([]);
+  const [supplyDemandData, setSupplyDemandData] = useState<
+    PredictedSupplyDemandTrendResponse[]
+  >([]);
+  const [peakDemandData, setPeakDemandData] = useState<
+    PredictedPeakDemandResponse[]
+  >([]);
+  const [riskDataState, setRiskDataState] = useState<RiskData[]>([]);
+  const [expenditureRevenueData, setExpenditureRevenueData] = useState<
+    ExpenditureRevenueForecastResponsePrediction[]
+  >([]);
+  const [turnoverData, setTurnoverData] = useState<TurnoverResponse[]>([]);
 
+  // Using useEffect to fetch data on component mount
   useEffect(() => {
-    const fetchTransactionData = async () => {
-      setTransactionData(transactionResponse);
+    const fetchEnergySurplusData = async () => {
+      setEnergySurplusData(predictedEnergySurplusResponse);
     };
-    const fetchEnergyData = async () => {
-      setEnergyData(energyResponse);
+
+    const fetchSupplyDemandData = async () => {
+      setSupplyDemandData(predictedSupplyDemandTrendResponse);
     };
-    const fetchRevenueData = async () => {
-      setRevenueData(revenueResponse);
+
+    const fetchPeakDemandData = async () => {
+      setPeakDemandData(predictedPeakDemandResponse);
     };
+
     const fetchRiskData = async () => {
-      setRiskData(riskResponse);
+      setRiskDataState(riskData);
     };
+
+    const fetchExpenditureRevenueData = async () => {
+      setExpenditureRevenueData(expenditureRevenueForecastResponsePrediction);
+    };
+
+    const fetchTurnoverData = async () => {
+      setTurnoverData(turnoverResponse);
+    };
+
+    fetchEnergySurplusData();
+    fetchSupplyDemandData();
+    fetchPeakDemandData();
     fetchRiskData();
-    fetchEnergyData();
-    fetchRevenueData();
-    fetchTransactionData();
+    fetchExpenditureRevenueData();
+    fetchTurnoverData();
   }, []);
 
   return (
     <div className="  w-[80%]  h-full">
       <div>
         <div className="  p-8 w-full">
-          {/* Top Section: 3 Cards with AreaChart */}
-          {/* <div className="flex flex-row  items-center space-x-8 mb-8">
-           */}
-          {/* Card 1 with AreaChart */}
           <div className="grid grid-cols-4 gap-4">
             <div className="bg-white/10  rounded-lg shadow-lg">
               <h2 className="font-bold text-center uppercase  p-2">
@@ -87,52 +110,45 @@ const Predictions = () => {
 
               <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
-                  data={transactiondata}
+                  data={energySurplusData}
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
                 >
                   <Tooltip />
+
                   <Area
                     type="monotone"
-                    dataKey="demand"
-                    stroke="#8884d8"
-                    fill="rgba(136, 132, 216, 0.3)"
-                    name="Peak Demand"
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="supply"
+                    dataKey="surplus"
                     stroke="#82ca9d"
                     fill="rgba(130, 202, 157, 0.3)"
-                    name="Peak Supply"
+                    name="Surplus"
                   />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
 
-            {/* Card 2 with AreaChart */}
             <div className="bg-white/10  rounded-lg shadow-lg">
               <h2 className="font-bold text-center uppercase  p-2">
                 Supply vs. Demand Prediction{" "}
               </h2>
               <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
-                  data={transactiondata}
+                  data={supplyDemandData}
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
                 >
                   <Tooltip />
                   <Area
                     type="monotone"
-                    dataKey="demand"
+                    dataKey="supply"
                     stroke="#8884d8"
                     fill="rgba(136, 132, 216, 0.3)"
-                    name="Peak Demand"
+                    name="Peak Supply"
                   />
                   <Area
                     type="monotone"
-                    dataKey="supply"
+                    dataKey="demand"
                     stroke="#82ca9d"
                     fill="rgba(130, 202, 157, 0.3)"
-                    name="Peak Supply"
+                    name="Peak Demand"
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -145,13 +161,13 @@ const Predictions = () => {
               </h2>
               <ResponsiveContainer width="110%" height="87%">
                 <AreaChart
-                  data={energyData} // Replace with your third data set
+                  data={peakDemandData}
                   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
                 >
                   <Tooltip />
                   <Area
                     type="monotone"
-                    dataKey="energyTraded"
+                    dataKey="peakDemand"
                     stroke="#8884d8"
                     fill="rgba(136, 132, 216, 0.3)"
                   />
@@ -214,8 +230,6 @@ const Predictions = () => {
           </div>
         </div>
 
-        {/* </div> */}
-        {/* New Row Content */}
         <div className="grid grid-cols-3">
           <div className="bg-white/10 p-4 rounded-lg shadow-md h-[20rem] ml-8 col-span-2">
             <div className="flex justify-between items-center mb-4 h-1">
@@ -228,7 +242,7 @@ const Predictions = () => {
             </div>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
-                data={riskData}
+                data={riskDataState}
                 margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
               >
                 <XAxis dataKey="time" tick={{ fill: "white" }} />
@@ -237,10 +251,10 @@ const Predictions = () => {
                 <Legend />
                 <Line
                   type="monotone"
-                  dataKey="averageRisk"
+                  dataKey="risk"
                   stroke="#818cf8"
                   activeDot={{ r: 8 }}
-                  name="Energy Traded (kWh)"
+                  name="Risk Level"
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -255,14 +269,14 @@ const Predictions = () => {
                   cx="50%"
                   cy="50%"
                   outerRadius={80}
-                  stroke="#818cf8"
+                  stroke="#ffff"
+                  fill="#818cf8"
                   label
                 />
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
             <div>
-              {/* Attached Chart on Top Right */}
               <div className="absolute top-0 right-0 w-[10rem] h-[10rem] m-1">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -283,7 +297,6 @@ const Predictions = () => {
                 Energy Traded (P2P)
               </h2>
             </div>
-            {/* fdfnkdsjfnkdsfjndskjnksndfkdsjn */}
           </div>
           <div className="bg-white/10 p-4 rounded-lg shadow-md h-[20rem] ml-8 col-span-1">
             <h2 className="font-bold  uppercase text-xl">
@@ -293,7 +306,7 @@ const Predictions = () => {
               <AreaChart
                 width={500}
                 height={400}
-                data={transactiondata}
+                data={expenditureRevenueData}
                 margin={{
                   top: 10,
                   right: 30,
@@ -301,19 +314,18 @@ const Predictions = () => {
                   bottom: 0,
                 }}
               >
-                {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <XAxis dataKey="time" tick={{ fill: "white" }} />
                 <YAxis tick={{ fill: "white" }} />
                 <Tooltip />
                 <Area
                   type="monotone"
-                  dataKey="demand"
+                  dataKey="expenditure"
                   stroke="#8884d8"
                   fill="#8884d8"
                   fillOpacity={0.3}
                 />
                 <Area
-                  dataKey="supply"
+                  dataKey="revenue"
                   stroke="#82ca9d"
                   fill="#82ca9d"
                   fillOpacity={0.3}
@@ -325,7 +337,7 @@ const Predictions = () => {
             <h2 className="font-bold  uppercase text-xl">TURNOVER</h2>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
-                data={energyData}
+                data={turnoverData}
                 margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
               >
                 <XAxis dataKey="time" tick={{ fill: "white" }} />
@@ -334,7 +346,7 @@ const Predictions = () => {
                 <Legend />
                 <Line
                   type="monotone"
-                  dataKey="energyTraded"
+                  dataKey="turnover"
                   stroke="#818cf8"
                   activeDot={{ r: 8 }}
                   name="Energy Traded (kWh)"

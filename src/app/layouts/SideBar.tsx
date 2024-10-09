@@ -1,51 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { SiSimpleanalytics } from "react-icons/si";
 import { CiLaptop } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
 import WalletConnectButton from "../solana-connect";
-import { useAtom } from "jotai";
-import { programAtom } from "@/store/global";
-import idl from "../abi.json";
-
-import {
-  Connection,
-  PublicKey,
-  Keypair,
-  Transaction,
-  SystemProgram,
-} from "@solana/web3.js";
-import { AnchorProvider, Program } from "@project-serum/anchor";
-import { registerGrid } from "../types/gridwise_program";
-
-const PROGRAM_ID = "D2CWA6U18ALzBiko2DUrae36F6zt8Gnt8DEzvLcEowsz";
 
 const SideBar = () => {
-  const [, setProgram] = useAtom(programAtom);
-
-  const createConnection = async () => {
-    const connection = new Connection("https://api.devnet.solana.com"); // Adjust if needed
-    const provider = new AnchorProvider(
-      connection,
-      window.solana, // Make sure this is properly set up
-      AnchorProvider.defaultOptions()
-    );
-
-    const program = new Program(
-      JSON.parse(JSON.stringify(idl)),
-      PROGRAM_ID,
-      provider
-    );
-
-    setProgram(program);
-  };
-
-  useEffect(() => {
-    createConnection();
-  }, []);
-
   return (
     <>
       <div className="grid grid-cols-4  gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl  min-h-screen px-2">
@@ -113,20 +75,6 @@ const SideBar = () => {
             >
               <div className="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                 <div className="p-1">
-                  {/* <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 group-hover:text-indigo-400"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-                    />
-                  </svg> */}
                   <SiSimpleanalytics />
                 </div>
                 <div>

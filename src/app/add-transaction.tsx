@@ -1,14 +1,14 @@
-import {
-  Connection,
-  PublicKey,
-  Keypair,
-  Transaction,
-  SystemProgram,
-} from "@solana/web3.js";
-import { Program, AnchorProvider, web3 } from "@project-serum/anchor";
-import BN from "bn.js"; // Import BN class
+import { Connection, PublicKey, Keypair, SystemProgram } from "@solana/web3.js";
+import { Program, AnchorProvider } from "@project-serum/anchor";
+import BN from "bn.js";
 import idl from "./abi.json";
-
+import * as anchor from "@coral-xyz/anchor";
+import {
+  AddTransaction,
+  RegisterChargingStation,
+  RegisterGrid,
+  RegisterPowerGenerationPoint,
+} from "../app/types/types";
 // Replace with your program ID
 const PROGRAM_ID = new PublicKey(
   "7rvBtZRY8RwhsrBfEmsbdXuF8jDK4QimGUyJRtXbaULM"
@@ -50,14 +50,14 @@ const createConnection = async () => {
   return program;
 };
 export const addTransaction = async (
-  txId,
-  powerType,
-  gridAddress,
-  powerAmount
-) => {
+  txId: number,
+  powerType: string,
+  gridAddress: string,
+  powerAmount: number
+): Promise<AddTransaction> => {
   const program = await createConnection();
   const transaction = Keypair.generate();
-  const provider = getProvider(); // Initialize provider here
+  const provider = getProvider();
 
   try {
     await program.methods
@@ -76,25 +76,29 @@ export const addTransaction = async (
       .rpc();
 
     console.log("Transaction added successfully");
+    return {
+      txId: txId.toString(),
+      powerType,
+      gridAddress,
+      powerAmount,
+    };
   } catch (error) {
     console.error("Error adding transaction:", error);
+    throw error; // Optionally rethrow the error for higher-level handling
   }
 };
 
 // Function to register a charging station
 export const registerChargingStation = async (
-  stationId,
-  stationName,
-  latitude,
-  longitude,
-  powerRating
-) => {
-  console.log("registerChargingStationsdfdfs");
+  stationId: number,
+  stationName: string,
+  latitude: number,
+  longitude: number,
+  powerRating: number
+): Promise<RegisterChargingStation> => {
   const program = await createConnection();
-  console.log("program", program);
   const chargingStation = Keypair.generate();
-  console.log(chargingStation);
-  const provider = getProvider(); // Initialize provider here
+  const provider = getProvider();
 
   try {
     await program.methods
@@ -114,34 +118,31 @@ export const registerChargingStation = async (
       .rpc();
 
     console.log("Charging station registered successfully");
+    return {
+      stationId,
+      stationName,
+      latitude,
+      longitude,
+      powerRating,
+    };
   } catch (error) {
     console.error("Error registering charging station:", error);
+    throw error;
   }
 };
 
-// Function to register a grid
 export const registerGrid = async (
-  gridId,
-  gridName,
-  location,
-  latitude,
-  longitude,
-  totalPowerCapacity
-) => {
-  console.log(
-    "registerChargingStation",
-    gridId,
-    gridName,
-    latitude,
-    longitude,
-    totalPowerCapacity
-  );
+  gridId: number,
+  gridName: string,
+  location: string,
+  latitude: number,
+  longitude: number,
+  totalPowerCapacity: number
+): Promise<RegisterGrid> => {
   const program = await createConnection();
-  console.log("program", program.methods.registerGrid);
-  console.log("program", program.methods);
-  const grid = Keypair.generate();
-  const provider = getProvider(); // Initialize provider here
-  console.log("provider", provider);
+  const gridKeyPair = anchor.web3.Keypair.generate();
+  const provider = getProvider();
+
   try {
     await program.methods
       .registerGrid(
@@ -153,28 +154,35 @@ export const registerGrid = async (
         new BN(totalPowerCapacity)
       )
       .accounts({
-        grid: grid.publicKey,
+        grid: gridKeyPair.publicKey,
         user: provider.wallet.publicKey,
-        systemProgram: SystemProgram.programId,
       })
-      .signers([grid])
+      .signers([gridKeyPair])
       .rpc();
 
     console.log("Grid registered successfully");
+    return {
+      gridId,
+      gridName,
+      location,
+      latitude,
+      longitude,
+      totalPowerCapacity,
+    };
   } catch (error) {
     console.error("Error registering grid:", error);
+    throw error;
   }
 };
 
-// Function to register a power generation point
 export const registerPowerGenerationPoint = async (
-  plantId,
-  plantName,
-  plantType,
-  latitude,
-  longitude,
-  powerProduction
-) => {
+  plantId: number,
+  plantName: string,
+  plantType: string,
+  latitude: number,
+  longitude: number,
+  powerProduction: number
+): Promise<RegisterPowerGenerationPoint> => {
   const program = await createConnection();
   const powerGenerationPoint = Keypair.generate();
   const provider = getProvider();
@@ -198,7 +206,16 @@ export const registerPowerGenerationPoint = async (
       .rpc();
 
     console.log("Power generation point registered successfully");
+    return {
+      plantId,
+      plantName,
+      plantType,
+      latitude,
+      longitude,
+      powerProduction,
+    };
   } catch (error) {
     console.error("Error registering power generation point:", error);
+    throw error;
   }
 };

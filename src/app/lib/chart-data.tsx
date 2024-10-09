@@ -67,3 +67,81 @@ export const expenditureRevenueForecastResponse = [
   { time: "2024-09-09", expenditure: 13000, revenue: 18000 },
   { time: "2024-09-10", expenditure: 12200, revenue: 17200 },
 ];
+
+export const predictedEnergySurplusResponse = [
+  { time: "2024-09-11", surplus: 165 },
+  { time: "2024-09-12", surplus: 175 },
+  { time: "2024-09-13", surplus: 160 },
+  { time: "2024-09-14", surplus: 170 },
+  { time: "2024-09-15", surplus: 185 },
+  { time: "2024-09-16", surplus: 190 },
+  { time: "2024-09-17", surplus: 195 },
+  { time: "2024-09-18", surplus: 200 },
+  { time: "2024-09-19", surplus: 205 },
+  { time: "2024-09-20", surplus: 210 },
+];
+
+export const predictedSupplyDemandTrendResponse = [
+  { time: "2024-09-11", supply: 265, demand: 255 },
+  { time: "2024-09-12", supply: 268, demand: 262 },
+  { time: "2024-09-13", supply: 272, demand: 266 },
+  { time: "2024-09-14", supply: 278, demand: 268 },
+  { time: "2024-09-15", supply: 283, demand: 273 },
+  { time: "2024-09-16", supply: 288, demand: 277 },
+  { time: "2024-09-17", supply: 292, demand: 283 },
+  { time: "2024-09-18", supply: 298, demand: 285 },
+  { time: "2024-09-19", supply: 305, demand: 290 },
+  { time: "2024-09-20", supply: 310, demand: 296 },
+];
+
+export const predictedPeakDemandResponse = [
+  { time: "2024-09-11", peakDemand: 225 },
+  { time: "2024-09-12", peakDemand: 240 },
+  { time: "2024-09-13", peakDemand: 265 },
+  { time: "2024-09-14", peakDemand: 280 },
+  { time: "2024-09-15", peakDemand: 245 },
+  { time: "2024-09-16", peakDemand: 250 },
+  { time: "2024-09-17", peakDemand: 265 },
+  { time: "2024-09-18", peakDemand: 310 },
+  { time: "2024-09-19", peakDemand: 301 },
+  { time: "2024-09-20", peakDemand: 299 },
+];
+
+export const riskData = [
+  { time: "2024-09-01", risk: 20 }, // 220 - 200
+  { time: "2024-09-02", risk: 10 }, // 240 - 230
+  { time: "2024-09-03", risk: 20 }, // 230 - 210
+  { time: "2024-09-04", risk: 10 }, // 250 - 240
+  { time: "2024-09-05", risk: 10 }, // 220 - 210
+  { time: "2024-09-06", risk: 10 }, // 260 - 250
+  { time: "2024-09-07", risk: 15 }, // 255 - 240
+  { time: "2024-09-08", risk: 10 }, // 270 - 260
+  { time: "2024-09-09", risk: 10 }, // 280 - 270
+  { time: "2024-09-10", risk: 10 }, // 260 - 250
+];
+
+export const expenditureRevenueForecastResponsePrediction = [
+  { time: "2024-09-11", expenditure: 12800, revenue: 18200 },
+  { time: "2024-09-12", expenditure: 13400, revenue: 19000 },
+  { time: "2024-09-13", expenditure: 13000, revenue: 18500 },
+  { time: "2024-09-14", expenditure: 13500, revenue: 19200 },
+  { time: "2024-09-15", expenditure: 14000, revenue: 19500 },
+  { time: "2024-09-16", expenditure: 13600, revenue: 19000 },
+  { time: "2024-09-17", expenditure: 14200, revenue: 19800 },
+  { time: "2024-09-18", expenditure: 13800, revenue: 19600 },
+  { time: "2024-09-19", expenditure: 14500, revenue: 20000 },
+  { time: "2024-09-20", expenditure: 14000, revenue: 19800 },
+];
+
+export const turnoverResponse = [
+  { time: "2024-09-11", turnover: 18200 },
+  { time: "2024-09-12", turnover: 19000 },
+  { time: "2024-09-13", turnover: 18500 },
+  { time: "2024-09-14", turnover: 19200 },
+  { time: "2024-09-15", turnover: 19500 },
+  { time: "2024-09-16", turnover: 19000 },
+  { time: "2024-09-17", turnover: 19800 },
+  { time: "2024-09-18", turnover: 19600 },
+  { time: "2024-09-19", turnover: 20000 },
+  { time: "2024-09-20", turnover: 19800 },
+];
