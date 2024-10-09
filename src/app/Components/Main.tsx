@@ -1,7 +1,6 @@
-"use client";
 import React from "react";
 import { MdOutlineEnergySavingsLeaf } from "react-icons/md";
-const Main = async () => {
+const Main = () => {
   return (
     <div className="w-[80%]">
       <div id="content" className=" col-span-9 rounded-lg p-6">
