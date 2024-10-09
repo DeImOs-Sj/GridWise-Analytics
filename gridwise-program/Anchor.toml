@@ -5,13 +5,13 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-gridwise_contract = "9RNGQrtLC1d8W2qwgCPNXzmu7AA7P4yvvUWDqXQ1Wce9"
+gridwise_program = "F5hkawr6BCpqcY4PKurBsCyaM3bijUWYtfd5LwX5vSnt"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "Devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

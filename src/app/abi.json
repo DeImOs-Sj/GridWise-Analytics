@@ -1,318 +1,148 @@
 {
-  "name": "system_program",
   "version": "0.1.0",
-
+  "name": "blog_sol",
+  "constants": [
+      {
+          "name": "USER_SEED",
+          "type": {
+              "defined": "&[u8]"
+          },
+          "value": "b\"user\""
+      },
+      {
+          "name": "POST_SEED",
+          "type": {
+              "defined": "&[u8]"
+          },
+          "value": "b\"post\""
+      }
+  ],
   "instructions": [
-    {
-      "name": "add_transaction",
-      "discriminator": [48, 96, 174, 112, 81, 30, 239, 89],
-      "accounts": [
-        {
-          "name": "transaction",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "tx_id",
-          "type": "u64"
-        },
-        {
-          "name": "power_type",
-          "type": "string"
-        },
-        {
-          "name": "grid_address",
-          "type": "pubkey"
-        },
-        {
-          "name": "power_amount",
-          "type": "u64"
-        }
-      ]
-    },
-    {
-      "name": "register_charging_station",
-      "discriminator": [92, 227, 163, 235, 56, 37, 198, 156],
-      "accounts": [
-        {
-          "name": "charging_station",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "station_id",
-          "type": "u64"
-        },
-        {
-          "name": "station_name",
-          "type": "string"
-        },
-        {
-          "name": "latitude",
-          "type": "f64"
-        },
-        {
-          "name": "longitude",
-          "type": "f64"
-        },
-        {
-          "name": "power_rating",
-          "type": "u64"
-        }
-      ]
-    },
-    {
-      "name": "register_grid",
-      "discriminator": [208, 238, 253, 24, 227, 235, 62, 178],
-      "accounts": [
-        {
-          "name": "grid",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "grid_id",
-          "type": "u64"
-        },
-        {
-          "name": "grid_name",
-          "type": "string"
-        },
-        {
-          "name": "location",
-          "type": "string"
-        },
-        {
-          "name": "latitude",
-          "type": "f64"
-        },
-        {
-          "name": "longitude",
-          "type": "f64"
-        },
-        {
-          "name": "total_power_capacity",
-          "type": "u64"
-        }
-      ]
-    },
-    {
-      "name": "register_power_generation_point",
-      "discriminator": [22, 78, 242, 140, 107, 45, 221, 101],
-      "accounts": [
-        {
-          "name": "power_generation_point",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "plant_id",
-          "type": "u64"
-        },
-        {
-          "name": "plant_name",
-          "type": "string"
-        },
-        {
-          "name": "plant_type",
-          "type": "string"
-        },
-        {
-          "name": "latitude",
-          "type": "f64"
-        },
-        {
-          "name": "longitude",
-          "type": "f64"
-        },
-        {
-          "name": "power_production",
-          "type": "u64"
-        }
-      ]
-    }
+      {
+          "name": "initUser",
+          "accounts": [
+              {
+                  "name": "userAccount",
+                  "isMut": true,
+                  "isSigner": false
+              },
+              {
+                  "name": "authority",
+                  "isMut": true,
+                  "isSigner": true
+              },
+              {
+                  "name": "systemProgram",
+                  "isMut": false,
+                  "isSigner": false
+              }
+          ],
+          "args": [
+              {
+                  "name": "name",
+                  "type": "string"
+              },
+              {
+                  "name": "avatar",
+                  "type": "string"
+              }
+          ]
+      },
+      {
+          "name": "createPost",
+          "accounts": [
+              {
+                  "name": "postAccount",
+                  "isMut": true,
+                  "isSigner": false
+              },
+              {
+                  "name": "userAccount",
+                  "isMut": true,
+                  "isSigner": false
+              },
+              {
+                  "name": "authority",
+                  "isMut": true,
+                  "isSigner": true
+              },
+              {
+                  "name": "systemProgram",
+                  "isMut": false,
+                  "isSigner": false
+              }
+          ],
+          "args": [
+              {
+                  "name": "title",
+                  "type": "string"
+              },
+              {
+                  "name": "content",
+                  "type": "string"
+              }
+          ]
+      }
   ],
   "accounts": [
-    {
-      "name": "ChargingStation",
-      "discriminator": [238, 245, 220, 162, 111, 34, 37, 194]
-    },
-    {
-      "name": "Grid",
-      "discriminator": [168, 154, 48, 14, 82, 188, 145, 84]
-    },
-    {
-      "name": "PowerGenerationPoint",
-      "discriminator": [15, 223, 169, 219, 236, 70, 98, 126]
-    },
-    {
-      "name": "Transaction",
-      "discriminator": [11, 24, 174, 129, 203, 117, 242, 23]
-    }
-  ],
-  "types": [
-    {
-      "name": "ChargingStation",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "station_id",
-            "type": "u64"
-          },
-          {
-            "name": "station_name",
-            "type": "string"
-          },
-          {
-            "name": "latitude",
-            "type": "f64"
-          },
-          {
-            "name": "longitude",
-            "type": "f64"
-          },
-          {
-            "name": "power_rating",
-            "type": "u64"
+      {
+          "name": "UserAccount",
+          "type": {
+              "kind": "struct",
+              "fields": [
+                  {
+                      "name": "name",
+                      "type": "string"
+                  },
+                  {
+                      "name": "avatar",
+                      "type": "string"
+                  },
+                  {
+                      "name": "authority",
+                      "type": "publicKey"
+                  },
+                  {
+                      "name": "lastPostId",
+                      "type": "u8"
+                  },
+                  {
+                      "name": "postCount",
+                      "type": "u8"
+                  }
+              ]
           }
-        ]
-      }
-    },
-    {
-      "name": "Grid",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "grid_id",
-            "type": "u64"
-          },
-          {
-            "name": "grid_name",
-            "type": "string"
-          },
-          {
-            "name": "location",
-            "type": "string"
-          },
-          {
-            "name": "latitude",
-            "type": "f64"
-          },
-          {
-            "name": "longitude",
-            "type": "f64"
-          },
-          {
-            "name": "total_power_capacity",
-            "type": "u64"
+      },
+      {
+          "name": "PostAccount",
+          "type": {
+              "kind": "struct",
+              "fields": [
+                  {
+                      "name": "id",
+                      "type": "u8"
+                  },
+                  {
+                      "name": "title",
+                      "type": "string"
+                  },
+                  {
+                      "name": "content",
+                      "type": "string"
+                  },
+                  {
+                      "name": "user",
+                      "type": "publicKey"
+                  },
+                  {
+                      "name": "authority",
+                      "type": "publicKey"
+                  }
+              ]
           }
-        ]
       }
-    },
-    {
-      "name": "PowerGenerationPoint",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "plant_id",
-            "type": "u64"
-          },
-          {
-            "name": "plant_name",
-            "type": "string"
-          },
-          {
-            "name": "plant_type",
-            "type": "string"
-          },
-          {
-            "name": "latitude",
-            "type": "f64"
-          },
-          {
-            "name": "longitude",
-            "type": "f64"
-          },
-          {
-            "name": "power_production",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Transaction",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "tx_id",
-            "type": "u64"
-          },
-          {
-            "name": "power_type",
-            "type": "string"
-          },
-          {
-            "name": "grid_address",
-            "type": "pubkey"
-          },
-          {
-            "name": "power_amount",
-            "type": "u64"
-          }
-        ]
-      }
-    }
   ],
   "metadata": {
-    "address": "7rvBtZRY8RwhsrBfEmsbdXuF8jDK4QimGUyJRtXbaULM"
+      "address": "FVDLUX9ZnEp943trRR3taTCpEHbZouRRi1bkKqWHPb3j"
   }
 }

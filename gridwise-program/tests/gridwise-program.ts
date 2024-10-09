@@ -1,15 +1,15 @@
 
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
-import { SolanaUei } from "../target/types/solana_uei";
+import { GridwiseProgram } from "../target/types/gridwise_program";
 import { assert } from "chai";
 
-describe("solana-uei", () => {
+describe("gridwise-program", () => {
   // Configure the client to use the local cluster.
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
 
-  const program = anchor.workspace.UriProgram as Program<SolanaUei>;
+  const program = anchor.workspace.UriProgram as Program<GridwiseProgram>;
   
   // grid account info
   const gridKeyPair = anchor.web3.Keypair.generate()
@@ -98,19 +98,30 @@ describe("solana-uei", () => {
     const tx_id = new anchor.BN(1243978);
     const grid_address = gridKeyPair.publicKey;
     const power_type = "GENERATION";
-    const power_amount = new anchor.BN(60000);
+    // const power_amount = new anchor.BN(60000);
 
-    await program.methods.addTransaction(
-      tx_id,power_type,grid_address,power_amount
-    ).accounts({
-      transaction: txKeyPair.publicKey,
-      user: provider.wallet.publicKey
-    }).signers(
-      [txKeyPair]
-    ).rpc()
+    let a = [new anchor.BN(1000),new anchor.BN(30000),new anchor.BN(310000),new anchor.BN(50),new anchor.BN(30000)].map(async (power_amount)=> {
+      await program.methods.addTransaction(
+        tx_id,power_type,grid_address,power_amount
+      ).accounts({
+        transaction: txKeyPair.publicKey,
+        user: provider.wallet.publicKey
+      }).signers(
+        [txKeyPair]
+      ).rpc()
+    })
+
+    await Promise.all(a)
+
+    
 
     const tx = await program.account.transaction.fetch(txKeyPair.publicKey);
     console.log(tx)
+
+    // const allTx = await program.account.transaction.all();
+    // const gridTx = allTx.filter(tx => tx.account.gridAddress.equals(gridKeyPair.publicKey))
+    // console.log(gridTx)
+
     assert.equal(tx.powerType, "GENERATION");
 
   })

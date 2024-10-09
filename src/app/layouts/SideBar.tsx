@@ -1,11 +1,56 @@
-import React from "react";
+'use client'
+
+import React, { useEffect } from "react";
 import { SiSimpleanalytics } from "react-icons/si";
 import { CiLaptop } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
 import WalletConnectButton from "../solana-connect";
+import { useAtom } from "jotai";
+import { programAtom } from "@/store/global";
+import idl from "../abi.json";
+
+import {
+  Connection,
+  PublicKey,
+  Keypair,
+  Transaction,
+  SystemProgram,
+} from "@solana/web3.js";
+import { AnchorProvider, Program } from "@project-serum/anchor";
+import { GridwiseProgram } from "../types/gridwise_program";
+
+
+const PROGRAM_ID = "D2CWA6U18ALzBiko2DUrae36F6zt8Gnt8DEzvLcEowsz";
 
 const SideBar = () => {
+
+  const [,setProgram] = useAtom(programAtom);
+
+  const createConnection = async () => {
+    const connection = new Connection("https://api.devnet.solana.com"); // Adjust if needed
+    const provider = new AnchorProvider(
+      connection,
+      window.solana, // Make sure this is properly set up
+      AnchorProvider.defaultOptions()
+    );
+  
+  
+    const program = new Program(
+      idl,
+      PROGRAM_ID,
+      provider
+    );
+
+    setProgram(program);
+  }
+
+  useEffect(()=> {
+    createConnection();
+  },[])
+
+  
+
   return (
     <>
       <div className="grid grid-cols-4  gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl  min-h-screen px-2">
