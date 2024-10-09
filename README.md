@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UEI Gridwise Analytics
 
-## Getting Started
+## Project Overview
 
-First, run the development server:
+The **UEI Gridwise Analytics** project is designed to assist Charlie, the Assistant Chief of the Distribution Company, in managing the city’s energy grid effectively. This project leverages Solana’s blockchain technology to create a transparent, reliable, and efficient system for tracking energy surplus, P2P transactions, and overall grid performance. Our analytics dashboard provides critical insights through various charts and graphs, enabling informed decision-making regarding energy production, consumption, and distribution.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Problem Statement
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Charlie requires a dashboard that accurately displays:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- The energy surplus from distributed sources.
+- Trends in P2P transactions over time, including:
+  - Peak demand and supply.
+  - Supply-demand mismatch.
+  - Quantum of energy traded.
+- Predictions for expenditures and revenues.
+- The amount of renewable energy consumed.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Assumptions
 
-## Learn More
+1. **Integration with Solana**: The UEI system is integrated with Solana, utilizing its capabilities for secure and transparent data management.
+2. **Smart Contracts for Tracking**: Energy units are tracked using Solana smart contracts, which are responsible for registering grid data and transactions.
+3. **Dummy Data for Testing**: Sample transactions and dummy data are created to simulate real-world scenarios and validate the functionality of the analytics dashboard.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Data Flow
 
-## Deploy on Vercel
+1. **Smart Contract Registration**: Grids are registered through a smart contract deployed on the Solana blockchain, allowing for secure and tamper-proof data storage.
+2. **Data Retrieval**: The backend system queries the blockchain for transaction data related to energy units, including supply, demand, and transaction history.
+3. **Data Processing**: The fetched data is processed to extract relevant metrics that inform Charlie's decision-making.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Dashboard Analytics
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The analytics dashboard aggregates data from the Solana ledger and presents it in a user-friendly format. Key features include:
+
+- **Charts and Graphs**: Various visualizations such as bar charts, line graphs, and pie charts illustrate:
+  - Energy surplus trends.
+  - P2P transaction statistics over time.
+  - Comparisons of peak demand and supply.
+  - Renewable energy consumption metrics.
+- **Real-Time Updates**: The dashboard provides real-time updates on grid performance and transaction data, enabling timely interventions.
+
+## Sample Transactions and Dummy Data
+
+We have created a Solana blockchain-based ledger containing sample transactions to demonstrate the functionality of the system. This includes:
+
+- **Grid Registrations**: Dummy data representing grid registrations through the smart contract.
+- **Transaction History**: Sample transactions showcasing energy trades, P2P exchanges, and surplus energy distributions.
+
+### Example Data Structure
+
+```json
+[
+  {
+    "transactionId": "abc123",
+    "timestamp": "2024-10-10T10:00:00Z",
+    "energyTraded": 100,
+    "gridId": "grid1",
+    "type": "P2P",
+    "price": 0.05
+  },
+  {
+    "transactionId": "def456",
+    "timestamp": "2024-10-10T11:00:00Z",
+    "energyTraded": 150,
+    "gridId": "grid2",
+    "type": "Supply",
+    "price": 0.07
+  }
+]
