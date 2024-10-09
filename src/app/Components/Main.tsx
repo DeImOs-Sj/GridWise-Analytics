@@ -1,6 +1,7 @@
+"use client";
 import React from "react";
 import { MdOutlineEnergySavingsLeaf } from "react-icons/md";
-const Main = () => {
+const Main = async () => {
   return (
     <div className="w-[80%]">
       <div id="content" className=" col-span-9 rounded-lg p-6">
@@ -26,13 +27,13 @@ const Main = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         className="w-6 h-6"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
                         />
                       </svg>
@@ -48,13 +49,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-10 h-10 text-white"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
@@ -70,13 +71,13 @@ const Main = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         className="w-6 h-6"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
                         />
                       </svg>
@@ -92,13 +93,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-10 h-10 text-white"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
                     />
                   </svg>
@@ -114,13 +115,13 @@ const Main = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
                         className="w-6 h-6"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
                         />
                       </svg>
@@ -155,13 +156,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                     />
                   </svg>
@@ -187,13 +188,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                     />
                   </svg>
@@ -219,13 +220,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                     />
                   </svg>
@@ -251,13 +252,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                     />
                   </svg>
@@ -283,13 +284,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                     />
                   </svg>
@@ -315,13 +316,13 @@ const Main = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                     />
                   </svg>
@@ -336,94 +337,98 @@ const Main = () => {
           <div className="overflow-x-scroll">
             <table className="w-full whitespace-nowrap">
               <thead className="bg-white/10">
-                <th className="text-left py-3 px-2 rounded-l-lg">Name</th>
-                <th className="text-left py-3 px-2">Email</th>
-                <th className="text-left py-3 px-2">Amount</th>
-                <th className="text-left py-3 px-2">Status</th>
-                <th className="text-left py-3 px-2 rounded-r-lg">
-                  Consumptions
-                </th>
+                <tr>
+                  <td className="text-left py-3 px-2 rounded-l-lg">Name</td>
+                  <td className="text-left py-3 px-2">Email</td>
+                  <td className="text-left py-3 px-2">Amount</td>
+                  <td className="text-left py-3 px-2">Status</td>
+                  <td className="text-left py-3 px-2 rounded-r-lg">
+                    Consumptions
+                  </td>
+                </tr>
               </thead>
-              <tr className="border-b border-gray-700">
-                <td className="py-3 px-2 font-bold">
-                  <div className="inline-flex space-x-3 items-center">
-                    <span></span>
-                    <span>Thai Mei</span>
-                  </div>
-                </td>
-                <td className="py-3 px-2">thai.mei@abc.com</td>
-                <td className="py-3 px-2">$20</td>
-                <td className="py-3 px-2">Approved</td>
-                <td className="py-3 px-2">
-                  <div className="inline-flex items-center space-x-3">
-                    10 units
-                  </div>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-700">
-                <td className="py-3 px-2 font-bold">
-                  <div className="inline-flex space-x-3 items-center">
-                    <span></span>
-                    <span>Thai Mei</span>
-                  </div>
-                </td>
-                <td className="py-3 px-2">thai.mei@abc.com</td>
-                <td className="py-3 px-2">$10</td>
-                <td className="py-3 px-2">Approved</td>
-                <td className="py-3 px-2">
-                  <div className="inline-flex items-center space-x-3">
-                    8 units
-                  </div>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-700">
-                <td className="py-3 px-2 font-bold">
-                  <div className="inline-flex space-x-3 items-center">
-                    <span></span>
-                    <span>Thai Mei</span>
-                  </div>
-                </td>
-                <td className="py-3 px-2">thai.mei@abc.com</td>
-                <td className="py-3 px-2">$23</td>
-                <td className="py-3 px-2">Approved</td>
-                <td className="py-3 px-2">
-                  <div className="inline-flex items-center space-x-3">
-                    12 units
-                  </div>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-700">
-                <td className="py-3 px-2 font-bold">
-                  <div className="inline-flex space-x-3 items-center">
-                    <span></span>
-                    <span>Marquez Spineli</span>
-                  </div>
-                </td>
-                <td className="py-3 px-2">marquez.spineli@cba.com</td>
-                <td className="py-3 px-2">$12</td>
-                <td className="py-3 px-2">Approved</td>
-                <td className="py-3 px-2">
-                  <div className="inline-flex items-center space-x-3">
-                    5 units
-                  </div>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="py-3 px-2 font-bold">
-                  <div className="inline-flex space-x-3 items-center">
-                    <span></span>
-                    <span>Mark Spike</span>
-                  </div>
-                </td>
-                <td className="py-3 px-2">mark.spike@abc.com</td>
-                <td className="py-3 px-2">$8</td>
-                <td className="py-3 px-2">Approved</td>
-                <td className="py-3 px-2">
-                  <div className="inline-flex items-center space-x-3">
-                    3 units
-                  </div>
-                </td>
-              </tr>
+              <tbody>
+                <tr className="border-b border-gray-700">
+                  <td className="py-3 px-2 font-bold">
+                    <div className="inline-flex space-x-3 items-center">
+                      <span></span>
+                      <span>Thai Mei</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2">thai.mei@abc.com</td>
+                  <td className="py-3 px-2">$20</td>
+                  <td className="py-3 px-2">Approved</td>
+                  <td className="py-3 px-2">
+                    <div className="inline-flex items-center space-x-3">
+                      10 units
+                    </div>
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-700">
+                  <td className="py-3 px-2 font-bold">
+                    <div className="inline-flex space-x-3 items-center">
+                      <span></span>
+                      <span>Thai Mei</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2">thai.mei@abc.com</td>
+                  <td className="py-3 px-2">$10</td>
+                  <td className="py-3 px-2">Approved</td>
+                  <td className="py-3 px-2">
+                    <div className="inline-flex items-center space-x-3">
+                      8 units
+                    </div>
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-700">
+                  <td className="py-3 px-2 font-bold">
+                    <div className="inline-flex space-x-3 items-center">
+                      <span></span>
+                      <span>Thai Mei</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2">thai.mei@abc.com</td>
+                  <td className="py-3 px-2">$23</td>
+                  <td className="py-3 px-2">Approved</td>
+                  <td className="py-3 px-2">
+                    <div className="inline-flex items-center space-x-3">
+                      12 units
+                    </div>
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-700">
+                  <td className="py-3 px-2 font-bold">
+                    <div className="inline-flex space-x-3 items-center">
+                      <span></span>
+                      <span>Marquez Spineli</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2">marquez.spineli@cba.com</td>
+                  <td className="py-3 px-2">$12</td>
+                  <td className="py-3 px-2">Approved</td>
+                  <td className="py-3 px-2">
+                    <div className="inline-flex items-center space-x-3">
+                      5 units
+                    </div>
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-800">
+                  <td className="py-3 px-2 font-bold">
+                    <div className="inline-flex space-x-3 items-center">
+                      <span></span>
+                      <span>Mark Spike</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2">mark.spike@abc.com</td>
+                  <td className="py-3 px-2">$8</td>
+                  <td className="py-3 px-2">Approved</td>
+                  <td className="py-3 px-2">
+                    <div className="inline-flex items-center space-x-3">
+                      3 units
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
